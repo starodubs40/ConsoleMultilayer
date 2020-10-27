@@ -1,7 +1,5 @@
 ﻿using BLL.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 //
 using BLL.DTO;
 //
@@ -44,10 +42,8 @@ namespace BLL.Services
 
         public void AddPersonalDiscount(int userId, decimal discount)
         {
-            var personalDiscounts = Db.PersonalDiscounts.GetAll();
             Db.PersonalDiscounts.Create(new PersonalDiscount
             {
-               // Id = personalDiscounts.Count() != 0  ? personalDiscounts.Max(item => item.Id) + 1 : 0,
                 UserId = userId,
                 Discount = discount
             });
@@ -55,8 +51,11 @@ namespace BLL.Services
 
         public void ChangePersonalDiscount(int userId, decimal newDiscount)
         {
+           
             var personalDiscount = Db.PersonalDiscounts.Find(item => item.UserId == userId);
             personalDiscount.Discount = newDiscount;
+            Db.PersonalDiscounts.Update(personalDiscount);
+          
         }
 
         public IEnumerable<OrderDTO> GetOrders()

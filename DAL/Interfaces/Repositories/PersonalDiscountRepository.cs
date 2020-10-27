@@ -18,6 +18,7 @@ namespace DAL.Interfaces.Repositories
         {
             db.PersonalDiscounts.Add(item);
             db.SaveChanges();
+
         }
 
         public void Delete(int id)
@@ -44,7 +45,14 @@ namespace DAL.Interfaces.Repositories
 
         public void Update(PersonalDiscount item)
         {
-            db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            using (DataContext db = new DataContext())
+            {
+                // получаем первый объект
+                PersonalDiscount p = db.PersonalDiscounts.FirstOrDefault();
+
+                p.Discount = item.Discount;
+                db.SaveChanges();   // сохраняем изменения
+            }
         }
     }
 }

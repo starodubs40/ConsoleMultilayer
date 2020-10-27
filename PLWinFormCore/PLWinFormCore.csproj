@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj" />
+    <ProjectReference Include="..\DAL\DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AuthorizationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AuthorizationView.Designer.cs">
+      <DependentUpon>AuthorizationView.cs</DependentUpon>
+    </Compile>
+    <Compile Update="MarketerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MarketerView.Designer.cs">
+      <DependentUpon>MarketerView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="AuthorizationView.resx">
+      <DependentUpon>AuthorizationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MarketerView.resx">
+      <DependentUpon>MarketerView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
